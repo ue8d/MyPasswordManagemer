@@ -34,6 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,7 +55,6 @@
             this.ログイン後 = new System.Windows.Forms.TabPage();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -82,7 +82,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
+            this.button1.Text = "ログイン";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -127,6 +127,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(663, 304);
             this.panel2.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 94);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(128, 12);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "保存されたパスワード一覧";
             // 
             // listView1
             // 
@@ -296,15 +305,6 @@
             this.ログイン後.TabIndex = 1;
             this.ログイン後.Text = "tabPage2";
             this.ログイン後.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 94);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 12);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "保存されたパスワード一覧";
             // 
             // Form1
             // 
