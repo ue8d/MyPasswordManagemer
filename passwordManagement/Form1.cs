@@ -27,11 +27,13 @@ namespace MyPasswordManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.label1.Text = "MyPasswordManager - v0.01";
+            this.label1.Text = "MyPasswordManager - v0.02";
+            this.label6.Text = "";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             passwordBox.PasswordChar = '*';
             initializeListView();
+            this.listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
@@ -96,9 +98,14 @@ namespace MyPasswordManager
             return sb.ToString();
         }
 
+        //保存ボタン
         private void button3_Click(object sender, EventArgs e)
         {
-
+            ListViewItem lvi;
+            lvi = listView1.Items.Add("サイト名");
+            lvi.SubItems.Add(textBox1.Text);
+            this.listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            this.label6.Text = "コピーしました";
         }
 
         private void initializeListView()
@@ -106,13 +113,21 @@ namespace MyPasswordManager
             //詳細表示にする
             listView1.View = View.Details;
             //初期値の設定
-            ListViewItem itemx = new ListViewItem();
-            itemx.Text = "この機能は";
-            itemx.ImageIndex = 0;
-            itemx.SubItems.Add("まだ");
-            itemx.SubItems.Add("実装されていません");
-            //リストビューに項目を追加
-            listView1.Items.Add(itemx);
+            listView1.Columns.Add("サイト名");
+            listView1.Columns.Add("パスワード");
+            ListViewItem lvi;
+            lvi = listView1.Items.Add("item1");
+            lvi.SubItems.Add("item1-2");
+        }
+
+        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if(listView1.SelectedItems.Count > 0)
+            {
+                int idx = 0;
+                idx = listView1.SelectedItems[0].Index;
+                Clipboard.SetText(listView1.Items[idx].SubItems[1].Text);
+            }
         }
     }
 }
