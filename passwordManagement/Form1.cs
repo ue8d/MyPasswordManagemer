@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Kadai05_installer
+namespace MyPasswordManager
 {
     public partial class Form1 : Form
     {
@@ -27,11 +27,12 @@ namespace Kadai05_installer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.label1.Text = "MyPasswordManager";
+            this.label1.Text = "MyPasswordManager - v0.01";
             this.label2.Text = "パスワードを入力してください";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             passwordBox.PasswordChar = '*';
+            initializeListView();
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
@@ -41,27 +42,43 @@ namespace Kadai05_installer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.panel1.Visible = false;
-            this.panel2.Visible = true;
+            if(passwordBox.Text == "")
+            {
+                this.panel1.Visible = false;
+                this.panel2.Visible = true;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //使用文字列の選定
-            if(radioButton1.Checked == true)
+            if((int.Parse(textBox2.Text) >= 1) && (int.Parse(textBox2.Text) <= 300))
             {
-                passwordChars = passwordChars1;
-            }
-            else if(radioButton2.Checked == true)
-            {
-                passwordChars = passwordChars2;
+                //使用文字列の選定
+                if (radioButton1.Checked == true)
+                {
+                    passwordChars = passwordChars1;
+                }
+                else if (radioButton2.Checked == true)
+                {
+                    passwordChars = passwordChars2;
+                }
+                else
+                {
+                    passwordChars = passwordChars3;
+                }
+                //パスワードの作成
+                textBox1.Text = generatePassWord(int.Parse(textBox2.Text));
             }
             else
             {
-                passwordChars = passwordChars3;
+                DialogResult result = MessageBox.Show(
+                    "1以上、300以下の数字にのみ対応しています。",
+                    "MyPasswordManager",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button2
+            );
             }
-            //パスワードの作成
-            textBox1.Text = generatePassWord(int.Parse(textBox2.Text));
         }
 
         private string generatePassWord(int length)
@@ -80,6 +97,25 @@ namespace Kadai05_installer
             }
 
             return sb.ToString();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void initializeListView()
+        {
+            //詳細表示にする
+            listView1.View = View.Details;
+            //初期値の設定
+            ListViewItem itemx = new ListViewItem();
+            itemx.Text = "この機能は";
+            itemx.ImageIndex = 0;
+            itemx.SubItems.Add("まだ");
+            itemx.SubItems.Add("実装されていません");
+            //リストビューに項目を追加
+            listView1.Items.Add(itemx);
         }
     }
 }

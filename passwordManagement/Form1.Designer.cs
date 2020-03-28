@@ -1,4 +1,4 @@
-﻿namespace Kadai05_installer
+﻿namespace MyPasswordManager
 {
     partial class Form1
     {
@@ -34,14 +34,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button3 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.outerPanel = new System.Windows.Forms.Panel();
@@ -50,6 +54,7 @@
             this.ログイン後 = new System.Windows.Forms.TabPage();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -108,6 +113,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.listView1);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.button2);
@@ -121,6 +128,34 @@
             this.panel2.Size = new System.Drawing.Size(663, 304);
             this.panel2.TabIndex = 2;
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(3, 109);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(657, 192);
+            this.listView1.TabIndex = 7;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "アカウントID";
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "パスワード";
+            this.columnHeader2.Width = 180;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "備考";
+            this.columnHeader3.Width = 600;
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(449, 65);
@@ -129,6 +164,7 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "保存";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label4
             // 
@@ -138,6 +174,16 @@
             this.label4.Size = new System.Drawing.Size(104, 12);
             this.label4.TabIndex = 5;
             this.label4.Text = "生成されたパスワード";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(557, 65);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(87, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "パスワード作成";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox1
             // 
@@ -190,16 +236,6 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "半角英数(大,小)";
             this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(557, 65);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "パスワード作成";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox2
             // 
@@ -261,6 +297,15 @@
             this.ログイン後.Text = "tabPage2";
             this.ログイン後.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 94);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(128, 12);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "保存されたパスワード一覧";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -311,5 +356,10 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button3;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Label label5;
     }
 }
