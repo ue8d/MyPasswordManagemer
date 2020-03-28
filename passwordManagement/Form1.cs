@@ -71,12 +71,10 @@ namespace MyPasswordManager
             else
             {
                 DialogResult result = MessageBox.Show(
-                    "1以上、300以下の数字にのみ対応しています。",
-                    "MyPasswordManager",
+                    "1以上、300以下の数字を入力してください。",
+                    "エラー",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation,
-                    MessageBoxDefaultButton.Button2
-            );
+                    MessageBoxIcon.Exclamation);
             }
         }
 
