@@ -28,7 +28,6 @@ namespace MyPasswordManager
         private void Form1_Load(object sender, EventArgs e)
         {
             this.label1.Text = "MyPasswordManager - v0.01";
-            this.label2.Text = "パスワードを入力してください";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             passwordBox.PasswordChar = '*';
