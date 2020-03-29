@@ -108,7 +108,7 @@ namespace MyPasswordManager
 
         private void addFile()
         {
-            File.AppendAllText(@"C:\ue8d\test.txt", "サイト名," + textBox1.Text + ",");
+            File.AppendAllText(@"C:\ue8d\test.txt", textBox3.Text + "," + textBox1.Text + ",");
         }
 
         private void addListView()
