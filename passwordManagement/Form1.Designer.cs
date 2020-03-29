@@ -34,6 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.button3 = new System.Windows.Forms.Button();
@@ -53,6 +54,7 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -111,6 +113,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.textBox3);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.listView1);
             this.panel2.Controls.Add(this.button3);
@@ -125,6 +129,14 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(663, 304);
             this.panel2.TabIndex = 2;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(354, 78);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(105, 19);
+            this.textBox3.TabIndex = 10;
+            this.textBox3.Text = "サイト名";
             // 
             // label5
             // 
@@ -149,7 +161,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(449, 65);
+            this.button3.Location = new System.Drawing.Point(475, 76);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(87, 23);
             this.button3.TabIndex = 6;
@@ -160,7 +172,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(354, 14);
+            this.label4.Location = new System.Drawing.Point(355, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(104, 12);
             this.label4.TabIndex = 5;
@@ -168,7 +180,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(557, 65);
+            this.button2.Location = new System.Drawing.Point(573, 76);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(87, 23);
             this.button2.TabIndex = 2;
@@ -178,7 +190,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(354, 29);
+            this.textBox1.Location = new System.Drawing.Point(354, 25);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(306, 19);
@@ -297,6 +309,15 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "コピーしました";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(354, 63);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 12);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "サイト名を入力";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -351,5 +372,7 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label7;
     }
 }

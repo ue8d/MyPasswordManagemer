@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -101,11 +102,21 @@ namespace MyPasswordManager
         //保存ボタン
         private void button3_Click(object sender, EventArgs e)
         {
+            addListView();//リストビューに追加
+            addFile();//File書き込み
+        }
+
+        private void addFile()
+        {
+            File.AppendAllText(@"C:\Users\tomoki\AppData\Local\ue8d\test.txt", "サイト名," + textBox1.Text + ",");
+        }
+
+        private void addListView()
+        {
             ListViewItem lvi;
             lvi = listView1.Items.Add("サイト名");
             lvi.SubItems.Add(textBox1.Text);
             this.listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            this.label6.Text = "コピーしました";
         }
 
         private void initializeListView()
@@ -116,8 +127,16 @@ namespace MyPasswordManager
             listView1.Columns.Add("サイト名");
             listView1.Columns.Add("パスワード");
             ListViewItem lvi;
-            lvi = listView1.Items.Add("item1");
-            lvi.SubItems.Add("item1-2");
+            //本来はデータベースから値を取ってくる
+            var line = File.ReadAllText(@"C:\Users\tomoki\AppData\Local\ue8d\test.txt");
+            var l = line.Split(',');
+            for (var i = 0; i < l.Length - 1; i++)
+            {
+                lvi = listView1.Items.Add(l[i]);
+                lvi.SubItems.Add(l[i + 1]);
+                i++;
+            }
+            this.listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -127,6 +146,7 @@ namespace MyPasswordManager
                 int idx = 0;
                 idx = listView1.SelectedItems[0].Index;
                 Clipboard.SetText(listView1.Items[idx].SubItems[1].Text);
+                this.label6.Text = "コピーしました";
             }
         }
     }
