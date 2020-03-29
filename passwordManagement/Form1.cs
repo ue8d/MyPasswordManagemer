@@ -108,13 +108,13 @@ namespace MyPasswordManager
 
         private void addFile()
         {
-            File.AppendAllText(@"C:\Users\tomoki\AppData\Local\ue8d\test.txt", "サイト名," + textBox1.Text + ",");
+            File.AppendAllText(@"C:\ue8d\test.txt", "サイト名," + textBox1.Text + ",");
         }
 
         private void addListView()
         {
             ListViewItem lvi;
-            lvi = listView1.Items.Add("サイト名");
+            lvi = listView1.Items.Add(textBox3.Text);
             lvi.SubItems.Add(textBox1.Text);
             this.listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
@@ -128,7 +128,7 @@ namespace MyPasswordManager
             listView1.Columns.Add("パスワード");
             ListViewItem lvi;
             //本来はデータベースから値を取ってくる
-            var line = File.ReadAllText(@"C:\Users\tomoki\AppData\Local\ue8d\test.txt");
+            var line = File.ReadAllText(@"C:\ue8d\test.txt");
             var l = line.Split(',');
             for (var i = 0; i < l.Length - 1; i++)
             {
