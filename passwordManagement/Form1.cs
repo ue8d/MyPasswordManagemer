@@ -17,6 +17,7 @@ namespace MyPasswordManager
         private static readonly string passwordChars2 = "0123456789abcdefghijklmnopqrstuvwxyz";
         private static readonly string passwordChars3 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_-+=[{]};:<>|./?";
         String passwordChars;
+        String masterPassword = "test";
 
         public Form1()
         {
@@ -28,13 +29,11 @@ namespace MyPasswordManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.label1.Text = "MyPasswordManager - v0.02";
+            this.label1.Text = "MyPasswordManager - v0.03";
             this.label6.Text = "";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             passwordBox.PasswordChar = '*';
-            initializeListView();
-            this.listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
@@ -46,6 +45,7 @@ namespace MyPasswordManager
         {
             if(passwordBox.Text == "")
             {
+                initializeListView();
                 this.panel1.Visible = false;
                 this.panel2.Visible = true;
             }
@@ -108,7 +108,7 @@ namespace MyPasswordManager
 
         private void addFile()
         {
-            File.AppendAllText(@"C:\ue8d\test.txt", textBox3.Text + "," + textBox1.Text + ",");
+            File.AppendAllText(@"C:\ue8d\test.txt", EncryptString(textBox3.Text,masterPassword) + "," + EncryptString(textBox1.Text,masterPassword) + ",");
         }
 
         private void addListView()
@@ -132,8 +132,8 @@ namespace MyPasswordManager
             var l = line.Split(',');
             for (var i = 0; i < l.Length - 1; i++)
             {
-                lvi = listView1.Items.Add(l[i]);
-                lvi.SubItems.Add(l[i + 1]);
+                lvi = listView1.Items.Add(DecryptString(l[i],masterPassword));
+                lvi.SubItems.Add(DecryptString(l[i + 1],masterPassword));
                 i++;
             }
             this.listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
@@ -148,6 +148,101 @@ namespace MyPasswordManager
                 Clipboard.SetText(listView1.Items[idx].SubItems[1].Text);
                 this.label6.Text = "コピーしました";
             }
+        }
+
+
+        /// <summary>
+        /// 文字列を暗号化する
+        /// </summary>
+        /// <param name="sourceString">暗号化する文字列</param>
+        /// <param name="password">暗号化に使用するパスワード</param>
+        /// <returns>暗号化された文字列</returns>
+        private static string EncryptString(string sourceString, string password)
+        {
+            //RijndaelManagedオブジェクトを作成
+            System.Security.Cryptography.RijndaelManaged rijndael =
+                new System.Security.Cryptography.RijndaelManaged();
+
+            //パスワードから共有キーと初期化ベクタを作成
+            byte[] key, iv;
+            GenerateKeyFromPassword(
+                password, rijndael.KeySize, out key, rijndael.BlockSize, out iv);
+            rijndael.Key = key;
+            rijndael.IV = iv;
+
+            //文字列をバイト型配列に変換する
+            byte[] strBytes = System.Text.Encoding.UTF8.GetBytes(sourceString);
+
+            //対称暗号化オブジェクトの作成
+            System.Security.Cryptography.ICryptoTransform encryptor =
+                rijndael.CreateEncryptor();
+            //バイト型配列を暗号化する
+            byte[] encBytes = encryptor.TransformFinalBlock(strBytes, 0, strBytes.Length);
+            //閉じる
+            encryptor.Dispose();
+
+            //バイト型配列を文字列に変換して返す
+            return System.Convert.ToBase64String(encBytes);
+        }
+
+        /// <summary>
+        /// 暗号化された文字列を復号化する
+        /// </summary>
+        /// <param name="sourceString">暗号化された文字列</param>
+        /// <param name="password">暗号化に使用したパスワード</param>
+        /// <returns>復号化された文字列</returns>
+        private static string DecryptString(string sourceString, string password)
+        {
+            //RijndaelManagedオブジェクトを作成
+            System.Security.Cryptography.RijndaelManaged rijndael =
+                new System.Security.Cryptography.RijndaelManaged();
+
+            //パスワードから共有キーと初期化ベクタを作成
+            byte[] key, iv;
+            GenerateKeyFromPassword(
+                password, rijndael.KeySize, out key, rijndael.BlockSize, out iv);
+            rijndael.Key = key;
+            rijndael.IV = iv;
+
+            //文字列をバイト型配列に戻す
+            byte[] strBytes = System.Convert.FromBase64String(sourceString);
+
+            //対称暗号化オブジェクトの作成
+            System.Security.Cryptography.ICryptoTransform decryptor =
+                rijndael.CreateDecryptor();
+            //バイト型配列を復号化する
+            //復号化に失敗すると例外CryptographicExceptionが発生
+            byte[] decBytes = decryptor.TransformFinalBlock(strBytes, 0, strBytes.Length);
+            //閉じる
+            decryptor.Dispose();
+
+            //バイト型配列を文字列に戻して返す
+            return System.Text.Encoding.UTF8.GetString(decBytes);
+        }
+
+        /// <summary>
+        /// パスワードから共有キーと初期化ベクタを生成する
+        /// </summary>
+        /// <param name="password">基になるパスワード</param>
+        /// <param name="keySize">共有キーのサイズ（ビット）</param>
+        /// <param name="key">作成された共有キー</param>
+        /// <param name="blockSize">初期化ベクタのサイズ（ビット）</param>
+        /// <param name="iv">作成された初期化ベクタ</param>
+        private static void GenerateKeyFromPassword(string password,
+            int keySize, out byte[] key, int blockSize, out byte[] iv)
+        {
+            //パスワードから共有キーと初期化ベクタを作成する
+            //saltを決める
+            byte[] salt = System.Text.Encoding.UTF8.GetBytes("saltは必ず8バイト以上");
+            //Rfc2898DeriveBytesオブジェクトを作成する
+            System.Security.Cryptography.Rfc2898DeriveBytes deriveBytes =
+                new System.Security.Cryptography.Rfc2898DeriveBytes(password, salt);
+            //反復処理回数を指定する デフォルトで1000回
+            deriveBytes.IterationCount = 1000;
+
+            //共有キーと初期化ベクタを生成する
+            key = deriveBytes.GetBytes(keySize / 8);
+            iv = deriveBytes.GetBytes(blockSize / 8);
         }
     }
 }
