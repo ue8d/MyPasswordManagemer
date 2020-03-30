@@ -40,6 +40,7 @@ namespace MyPasswordManager
             this.panel1.BringToFront();
         }
 
+        //ログインボタン
         private void button1_Click(object sender, EventArgs e)
         {
             if(passwordBox.Text == "")
@@ -47,6 +48,14 @@ namespace MyPasswordManager
                 initializeListView();
                 this.panel1.Visible = false;
                 this.panel2.Visible = true;
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show(
+                    "マスターパスワードが違います。",
+                    "エラー",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
             }
         }
 
