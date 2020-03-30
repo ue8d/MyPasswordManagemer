@@ -1,11 +1,10 @@
-﻿using MyPasswordManager;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Kadai05_installer
+namespace MyPasswordManager
 {
     static class Program
     {
