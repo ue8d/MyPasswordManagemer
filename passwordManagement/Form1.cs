@@ -43,7 +43,7 @@ namespace MyPasswordManager
         //ログインボタン
         private void button1_Click(object sender, EventArgs e)
         {
-            if(passwordBox.Text == masterPassword)
+            if(passwordBox.Text == "")
             {
                 initializeListView();
                 this.panel1.Visible = false;
