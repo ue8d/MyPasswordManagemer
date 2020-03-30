@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -54,8 +56,6 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -77,6 +77,15 @@
             this.panel1.Size = new System.Drawing.Size(663, 304);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 177);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(295, 12);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "初回パスワード保存時に\"C:\\ue8d\\test.txt\"が作成されます。";
             // 
             // button1
             // 
@@ -131,6 +140,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(663, 304);
             this.panel2.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(354, 63);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 12);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "サイト名を入力";
             // 
             // textBox3
             // 
@@ -310,24 +328,6 @@
             this.label6.Size = new System.Drawing.Size(68, 12);
             this.label6.TabIndex = 6;
             this.label6.Text = "コピーしました";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(354, 63);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 12);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "サイト名を入力";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 177);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(309, 12);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "パスワードを保存するには\"C:\\ue8d\\test.txt\"を作成してください。";
             // 
             // Form1
             // 

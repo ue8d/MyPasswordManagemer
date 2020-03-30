@@ -43,7 +43,7 @@ namespace MyPasswordManager
         //ログインボタン
         private void button1_Click(object sender, EventArgs e)
         {
-            if(passwordBox.Text == "")
+            if(passwordBox.Text == masterPassword)
             {
                 initializeListView();
                 this.panel1.Visible = false;
@@ -56,6 +56,7 @@ namespace MyPasswordManager
                     "エラー",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
+                passwordBox.Text = "";
             }
         }
 
