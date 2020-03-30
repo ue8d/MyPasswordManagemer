@@ -62,31 +62,43 @@ namespace MyPasswordManager
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if((int.Parse(textBox2.Text) >= 1) && (int.Parse(textBox2.Text) <= 300))
+            try
             {
-                //使用文字列の選定
-                if (radioButton1.Checked == true)
+                if ((int.Parse(textBox2.Text) >= 1) && (int.Parse(textBox2.Text) <= 300))
                 {
-                    passwordChars = passwordChars1;
-                }
-                else if (radioButton2.Checked == true)
-                {
-                    passwordChars = passwordChars2;
+                    //使用文字列の選定
+                    if (radioButton1.Checked == true)
+                    {
+                        passwordChars = passwordChars1;
+                    }
+                    else if (radioButton2.Checked == true)
+                    {
+                        passwordChars = passwordChars2;
+                    }
+                    else
+                    {
+                        passwordChars = passwordChars3;
+                    }
+                    //パスワードの作成
+                    textBox1.Text = generatePassWord(int.Parse(textBox2.Text));
                 }
                 else
                 {
-                    passwordChars = passwordChars3;
+                    DialogResult result = MessageBox.Show(
+                        "1以上、300以下の数字を入力してください。",
+                        "エラー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
                 }
-                //パスワードの作成
-                textBox1.Text = generatePassWord(int.Parse(textBox2.Text));
             }
-            else
+            catch(Exception)
             {
                 DialogResult result = MessageBox.Show(
-                    "1以上、300以下の数字を入力してください。",
-                    "エラー",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+                        "数字を入力してください。",
+                        "エラー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                textBox2.Text = "32";
             }
         }
 
@@ -148,7 +160,7 @@ namespace MyPasswordManager
                     i++;
                 }
             }
-            catch (IOException e)
+            catch (Exception)
             {
                 DialogResult result = MessageBox.Show(
                     "パスワードファイルの読み込みに失敗しました。",
