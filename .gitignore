@@ -339,3 +339,6 @@ healthchecksdb
 
 # 個別対応
 passwordManagement/bin/Release/passwordManagement.exe.config
+
+#セキュリティの問題でCore部分は除外
+passwordManagement/Form1.Core.cs
