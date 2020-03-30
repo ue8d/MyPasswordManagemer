@@ -30,6 +30,10 @@ namespace MyPasswordManager
                     "お知らせ",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
+                //マスターパスワードの設定
+                passwordManagement.Properties.Settings.Default.userMasterPassword = "test";
+                passwordManagement.Properties.Settings.Default.Save();
+                //フラグの変更
                 passwordManagement.Properties.Settings.Default.FIG = false;
                 passwordManagement.Properties.Settings.Default.Save();
             }
@@ -192,13 +196,6 @@ namespace MyPasswordManager
                 Clipboard.SetText(listView1.Items[idx].SubItems[1].Text);
                 this.label6.Text = "コピーしました";
             }
-        }
-
-        //これは要らない子（後で消す）
-        private void Form1_Shown(object sender, EventArgs e)
-        {
-            passwordManagement.Properties.Settings.Default.userMasterPassword = "test";
-            passwordManagement.Properties.Settings.Default.Save();
         }
     }
 }
