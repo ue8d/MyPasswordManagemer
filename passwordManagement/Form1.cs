@@ -136,13 +136,24 @@ namespace MyPasswordManager
             listView1.Columns.Add("パスワード");
             ListViewItem lvi;
             //本来はデータベースから値を取ってくる
-            var line = File.ReadAllText(@"C:\ue8d\test.txt");
-            var l = line.Split(',');
-            for (var i = 0; i < l.Length - 1; i++)
+            try
             {
-                lvi = listView1.Items.Add(DecryptString(l[i],masterPassword));
-                lvi.SubItems.Add(DecryptString(l[i + 1],masterPassword));
-                i++;
+                var line = File.ReadAllText(@"C:\ue8d\test.txt");
+                var l = line.Split(',');
+                for (var i = 0; i < l.Length - 1; i++)
+                {
+                    lvi = listView1.Items.Add(DecryptString(l[i], masterPassword));
+                    lvi.SubItems.Add(DecryptString(l[i + 1], masterPassword));
+                    i++;
+                }
+            }
+            catch (IOException e)
+            {
+                DialogResult result = MessageBox.Show(
+                    "パスワードファイルの読み込みに失敗しました。",
+                    "エラー",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
             }
             this.listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
