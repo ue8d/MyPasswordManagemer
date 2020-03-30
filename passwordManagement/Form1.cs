@@ -28,7 +28,7 @@ namespace MyPasswordManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.label1.Text = "MyPasswordManager - v0.03";
+            this.label1.Text = "MyPasswordManager - v0.04";
             this.label6.Text = "";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -117,7 +117,7 @@ namespace MyPasswordManager
 
         private void addFile()
         {
-            File.AppendAllText(@"C:\ue8d\test.txt", EncryptString(textBox3.Text,masterPassword) + "," + EncryptString(textBox1.Text,masterPassword) + ",");
+            File.AppendAllText(@"C:\ue8d\password.csv", EncryptString(textBox3.Text,masterPassword) + "," + EncryptString(textBox1.Text,masterPassword) + ",");
         }
 
         private void addListView()
@@ -139,7 +139,7 @@ namespace MyPasswordManager
             //本来はデータベースから値を取ってくる
             try
             {
-                var line = File.ReadAllText(@"C:\ue8d\test.txt");
+                var line = File.ReadAllText(@"C:\ue8d\password.csv");
                 var l = line.Split(',');
                 for (var i = 0; i < l.Length - 1; i++)
                 {

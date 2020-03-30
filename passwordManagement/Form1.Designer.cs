@@ -83,9 +83,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(13, 177);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(295, 12);
+            this.label8.Size = new System.Drawing.Size(327, 12);
             this.label8.TabIndex = 3;
-            this.label8.Text = "初回パスワード保存時に\"C:\\ue8d\\test.txt\"が作成されます。";
+            this.label8.Text = "初回パスワード保存時に\"C:\\ue8d\\password.csv\"が作成されます。";
             // 
             // button1
             // 
