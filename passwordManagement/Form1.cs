@@ -21,6 +21,18 @@ namespace MyPasswordManager
         public Form1()
         {
             InitializeComponent();
+            //初回起動判定
+            if (passwordManagement.Properties.Settings.Default.FIG)
+            {
+                //本来はここでマスターパスワードを入力させる
+                DialogResult result = MessageBox.Show(
+                    "初回起動",
+                    "お知らせ",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                passwordManagement.Properties.Settings.Default.FIG = false;
+                passwordManagement.Properties.Settings.Default.Save();
+            }
             panel1.Parent = outerPanel;
             panel2.Parent = outerPanel;
             tabControl1.Visible = false;

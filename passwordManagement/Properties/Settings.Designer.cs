@@ -34,5 +34,17 @@ namespace passwordManagement.Properties {
                 this["userMasterPassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FIG {
+            get {
+                return ((bool)(this["FIG"]));
+            }
+            set {
+                this["FIG"] = value;
+            }
+        }
     }
 }
