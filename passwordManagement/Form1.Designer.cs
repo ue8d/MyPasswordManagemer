@@ -56,6 +56,12 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label6 = new System.Windows.Forms.Label();
+            this.初回起動時用 = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -63,6 +69,8 @@
             this.tabControl1.SuspendLayout();
             this.トップページ.SuspendLayout();
             this.ログイン後.SuspendLayout();
+            this.初回起動時用.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -289,6 +297,7 @@
             // 
             this.tabControl1.Controls.Add(this.トップページ);
             this.tabControl1.Controls.Add(this.ログイン後);
+            this.tabControl1.Controls.Add(this.初回起動時用);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Enabled = false;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -329,6 +338,63 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "コピーしました";
             // 
+            // 初回起動時用
+            // 
+            this.初回起動時用.Controls.Add(this.panel3);
+            this.初回起動時用.Location = new System.Drawing.Point(4, 22);
+            this.初回起動時用.Name = "初回起動時用";
+            this.初回起動時用.Size = new System.Drawing.Size(669, 310);
+            this.初回起動時用.TabIndex = 2;
+            this.初回起動時用.Text = "tabPage3";
+            this.初回起動時用.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.button4);
+            this.panel3.Controls.Add(this.textBox4);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(669, 310);
+            this.panel3.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(13, 177);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(538, 24);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "パスワードを管理するためのマスターパスワードを決めてください。\r\nただし、マスターパスワードを忘れてしまうとMyPasswordManagerにアクセスする事がで" +
+    "きなくなるのでご注意ください。\r\n";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(344, 65);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "登録";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(39, 67);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(242, 19);
+            this.textBox4.TabIndex = 1;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(172, 12);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "マスターパスワードを入力してください";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -351,6 +417,9 @@
             this.tabControl1.ResumeLayout(false);
             this.トップページ.ResumeLayout(false);
             this.ログイン後.ResumeLayout(false);
+            this.初回起動時用.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -386,5 +455,11 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TabPage 初回起動時用;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label10;
     }
 }
