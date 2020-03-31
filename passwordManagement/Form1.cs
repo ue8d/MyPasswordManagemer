@@ -36,15 +36,15 @@ namespace MyPasswordManager
             //初回起動判定
             if (passwordManagement.Properties.Settings.Default.FIG == 0)
             {
-                //本来はここでマスターパスワードを入力させる
-                DialogResult result = MessageBox.Show(
-                    "初回起動",
-                    "お知らせ",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-                passwordManagement.Properties.Settings.Default.FIG = 1;
-                passwordManagement.Properties.Settings.Default.Save();
+                //後のアップデートで初回起動時のパスワード入力画面を設定する
+                firstLaunch();
             }
+        }
+
+        private void firstLaunch()
+        {
+            passwordManagement.Properties.Settings.Default.FIG = 1;
+            passwordManagement.Properties.Settings.Default.Save();
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
@@ -192,13 +192,6 @@ namespace MyPasswordManager
                 Clipboard.SetText(listView1.Items[idx].SubItems[1].Text);
                 this.label6.Text = "コピーしました";
             }
-        }
-
-        //これは要らない子（後で消す）
-        private void Form1_Shown(object sender, EventArgs e)
-        {
-            passwordManagement.Properties.Settings.Default.userMasterPassword = "test";
-            passwordManagement.Properties.Settings.Default.Save();
         }
     }
 }
