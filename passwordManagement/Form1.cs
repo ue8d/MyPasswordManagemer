@@ -141,7 +141,20 @@ namespace MyPasswordManager
 
         private void addFile()
         {
-            File.AppendAllText(@"C:\ue8d\password.csv", EncryptString(textBox3.Text,masterPassword) + "," + EncryptString(textBox1.Text,masterPassword) + ",");
+            string filePath = @"C:\ue8d\password.csv";
+            if (File.Exists(filePath))
+            {
+                File.AppendAllText(filePath, EncryptString(textBox3.Text, masterPassword) + "," + EncryptString(textBox1.Text, masterPassword) + ",");
+            }
+            else
+            {
+                Directory.CreateDirectory(@"C:\ue8d");
+                using (FileStream fs = File.Create(filePath))
+                {
+                    fs.Close();
+                }
+                addFile();
+            }
         }
 
         private void addListView()
