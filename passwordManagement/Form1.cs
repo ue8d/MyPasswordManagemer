@@ -72,6 +72,7 @@ namespace MyPasswordManager
             }
         }
 
+        //パスワード生成ボタン
         private void button2_Click(object sender, EventArgs e)
         {
             try
@@ -191,7 +192,8 @@ namespace MyPasswordManager
                 if (File.Exists(filePath))
                 {
                     DialogResult result = MessageBox.Show(
-                    "原因不明のエラーによりパスワードファイルの読み込みに失敗しました。",
+                    "復元の失敗によりパスワードファイルの読み込みに失敗しました。" + Environment.NewLine + 
+                    "お手数をおかけしますが、" + filePath + "を削除して再度お試しください。",
                     "エラー",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
