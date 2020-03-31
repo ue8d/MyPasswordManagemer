@@ -187,11 +187,15 @@ namespace MyPasswordManager
             }
             catch (Exception)
             {
-                DialogResult result = MessageBox.Show(
-                    "パスワードファイルの読み込みに失敗しました。",
+                string filePath = @"C:\ue8d\password.csv";
+                if (File.Exists(filePath))
+                {
+                    DialogResult result = MessageBox.Show(
+                    "原因不明のエラーによりパスワードファイルの読み込みに失敗しました。",
                     "エラー",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
+                }      
             }
             this.listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
