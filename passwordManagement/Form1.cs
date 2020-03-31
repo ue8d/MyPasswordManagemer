@@ -21,22 +21,6 @@ namespace MyPasswordManager
         public Form1()
         {
             InitializeComponent();
-            //初回起動判定
-            if (passwordManagement.Properties.Settings.Default.FIG)
-            {
-                //本来はここでマスターパスワードを入力させる
-                DialogResult result = MessageBox.Show(
-                    "初回起動",
-                    "お知らせ",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-                //マスターパスワードの設定
-                passwordManagement.Properties.Settings.Default.userMasterPassword = "test";
-                passwordManagement.Properties.Settings.Default.Save();
-                //フラグの変更
-                passwordManagement.Properties.Settings.Default.FIG = false;
-                passwordManagement.Properties.Settings.Default.Save();
-            }
             panel1.Parent = outerPanel;
             panel2.Parent = outerPanel;
             tabControl1.Visible = false;
@@ -49,6 +33,18 @@ namespace MyPasswordManager
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             passwordBox.PasswordChar = '*';
+            //初回起動判定
+            if (passwordManagement.Properties.Settings.Default.FIG == 0)
+            {
+                //本来はここでマスターパスワードを入力させる
+                DialogResult result = MessageBox.Show(
+                    "初回起動",
+                    "お知らせ",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                passwordManagement.Properties.Settings.Default.FIG = 1;
+                passwordManagement.Properties.Settings.Default.Save();
+            }
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
@@ -176,7 +172,7 @@ namespace MyPasswordManager
                     i++;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 DialogResult result = MessageBox.Show(
                     "パスワードファイルの読み込みに失敗しました。",
@@ -196,6 +192,13 @@ namespace MyPasswordManager
                 Clipboard.SetText(listView1.Items[idx].SubItems[1].Text);
                 this.label6.Text = "コピーしました";
             }
+        }
+
+        //これは要らない子（後で消す）
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            passwordManagement.Properties.Settings.Default.userMasterPassword = "test";
+            passwordManagement.Properties.Settings.Default.Save();
         }
     }
 }
