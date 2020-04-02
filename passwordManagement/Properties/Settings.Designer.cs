@@ -37,10 +37,10 @@ namespace passwordManagement.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public short FIG {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FIG {
             get {
-                return ((short)(this["FIG"]));
+                return ((bool)(this["FIG"]));
             }
             set {
                 this["FIG"] = value;

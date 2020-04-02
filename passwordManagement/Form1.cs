@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace MyPasswordManager
         private static readonly string passwordChars2 = "0123456789abcdefghijklmnopqrstuvwxyz";
         private static readonly string passwordChars3 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_-+=[{]};:<>|./?";
         String passwordChars;
+        bool FIG = passwordManagement.Properties.Settings.Default.FIG;
 
         public Form1()
         {
@@ -28,23 +30,30 @@ namespace MyPasswordManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.label1.Text = "MyPasswordManager - v0.04";
-            this.label6.Text = "";
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            passwordBox.PasswordChar = '*';
+            initialize();
+            //initializeDebug();
             //初回起動判定
-            if (passwordManagement.Properties.Settings.Default.FIG == 0)
+            if (FIG)
             {
                 //後のアップデートで初回起動時のパスワード入力画面を設定する
                 firstLaunch();
             }
         }
 
+        private void initialize()
+        {
+
+            this.label1.Text = "MyPasswordManager - v0.04";
+            this.label6.Text = "";
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            passwordBox.PasswordChar = '*';
+        }
+
         private void firstLaunch()
         {
-            passwordManagement.Properties.Settings.Default.FIG = 1;
-            passwordManagement.Properties.Settings.Default.Save();
+            label1.Text = "マスターパスワードを決めてください。";
+            button1.Text = "登録";
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
@@ -55,20 +64,34 @@ namespace MyPasswordManager
         //ログインボタン
         private void button1_Click(object sender, EventArgs e)
         {
-            if(passwordBox.Text == "")
+            if (FIG)
             {
-                initializeListView();
+                passwordManagement.Properties.Settings.Default.userMasterPassword = passwordBox.Text;
+                passwordManagement.Properties.Settings.Default.FIG = false;
+                passwordManagement.Properties.Settings.Default.Save();
+                initializeDataGrid();
                 this.panel1.Visible = false;
                 this.panel2.Visible = true;
             }
             else
             {
-                DialogResult result = MessageBox.Show(
-                    "マスターパスワードが違います。",
-                    "エラー",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-                passwordBox.Text = "";
+                if (passwordBox.Text == passwordManagement.Properties.Settings.Default.userMasterPassword)
+                {
+                    initializeDataGrid();
+                    //initializeListView();
+                    this.panel1.Visible = false;
+                    this.panel2.Visible = true;
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show(
+                        "マスターパスワードが違います。",
+                        "エラー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    passwordBox.Text = "";
+                }
+
             }
         }
 
@@ -136,8 +159,34 @@ namespace MyPasswordManager
         //保存ボタン
         private void button3_Click(object sender, EventArgs e)
         {
-            addListView();//リストビューに追加
-            addFile();//File書き込み
+            //addListView(); //リストビューに追加
+            //addFile(); //File書き込み
+            addSQL();
+        }
+
+        private void addSQL()
+        {
+            String sql = "insert into passwordmanager (site,siteId,password) values('" + textBox3.Text + "','siteid','" + EncryptString(textBox1.Text, masterPassword) + "')";
+            // MySQLへの接続
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(sLogin);
+                connection.Open();
+
+                DataTable dt = new DataTable();
+
+                MySqlDataAdapter da = new MySqlDataAdapter(sql, connection);
+
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+
+                connection.Close();
+                initializeDataGrid();
+            }
+            catch (MySqlException me)
+            {
+                MessageBox.Show("ERROR: " + me.Message);
+            }
         }
 
         private void addFile()
@@ -211,6 +260,36 @@ namespace MyPasswordManager
                 Clipboard.SetText(listView1.Items[idx].SubItems[1].Text);
                 this.label6.Text = "コピーしました";
             }
+        }
+
+        private void initializeDataGrid()
+        {
+            // MySQLへの接続
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(sLogin);
+                connection.Open();
+
+                DataTable dt = new DataTable();
+
+                MySqlDataAdapter da = new MySqlDataAdapter("select site,password from passwordManager", connection);
+
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+
+                connection.Close();
+            }
+            catch (MySqlException me)
+            {
+                MessageBox.Show("ERROR: " + me.Message);
+            }
+        }
+
+        private void initializeDebug()
+        {
+            passwordManagement.Properties.Settings.Default.userMasterPassword = "";
+            passwordManagement.Properties.Settings.Default.FIG = true;
+            passwordManagement.Properties.Settings.Default.Save();
         }
     }
 }
