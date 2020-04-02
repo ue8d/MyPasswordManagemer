@@ -30,7 +30,7 @@ namespace MyPasswordManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            initializeDebug();//デバック用保存変数初期化
+            //initializeDebug();//デバック用保存変数初期化
             initialize();
         }
 
@@ -49,6 +49,7 @@ namespace MyPasswordManager
                 this.databaseId.Visible = false;
                 this.label11.Visible = false;
                 this.databasePass.Visible = false;
+                this.groupBox2.Visible = false;
             }
             else
             {
@@ -75,9 +76,18 @@ namespace MyPasswordManager
         {
             if (FIG)
             {
+                //データ保存先の選択
+                if (radioButton5.Checked == true)//DB
+                {
+                    passwordManagement.Properties.Settings.Default.databaseId = databaseId.Text;
+                    passwordManagement.Properties.Settings.Default.databasePassword = databasePass.Text;
+                    passwordManagement.Properties.Settings.Default.destination = true;//保存先判定
+                }
+                else
+                {
+                    passwordManagement.Properties.Settings.Default.destination = false;
+                }
                 passwordManagement.Properties.Settings.Default.userMasterPassword = passwordBox.Text;
-                passwordManagement.Properties.Settings.Default.databaseId = databaseId.Text;
-                passwordManagement.Properties.Settings.Default.databasePassword = databasePass.Text;
                 passwordManagement.Properties.Settings.Default.FIG = false;
                 passwordManagement.Properties.Settings.Default.Save();
                 initializeDataGrid();
