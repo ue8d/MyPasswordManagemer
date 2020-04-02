@@ -70,5 +70,17 @@ namespace passwordManagement.Properties {
                 this["databasePassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool destination {
+            get {
+                return ((bool)(this["destination"]));
+            }
+            set {
+                this["destination"] = value;
+            }
+        }
     }
 }
