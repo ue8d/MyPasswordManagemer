@@ -30,30 +30,39 @@ namespace MyPasswordManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            initializeDebug();//デバック用保存変数初期化
             initialize();
-            //initializeDebug();
-            //初回起動判定
-            if (FIG)
-            {
-                //後のアップデートで初回起動時のパスワード入力画面を設定する
-                firstLaunch();
-            }
         }
 
         private void initialize()
         {
-
             this.label1.Text = "MyPasswordManager - v0.04";
             this.label6.Text = "";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            passwordBox.PasswordChar = '*';
+            this.passwordBox.PasswordChar = '*';
+
+            if (!FIG)//初回起動判定
+            {
+                this.label9.Visible = false;
+                this.label10.Visible = false;
+                this.databaseId.Visible = false;
+                this.label11.Visible = false;
+                this.databasePass.Visible = false;
+            }
+            else
+            {
+                firstLaunch();
+            }
         }
 
         private void firstLaunch()
         {
-            label1.Text = "マスターパスワードを決めてください。";
+            label2.Text = "必要項目を入力してください。";
             button1.Text = "登録";
+            label9.Text = "マスターパスワード";
+            label10.Text = "DBログインID";
+            label11.Text = "DBパスワード";
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
@@ -67,6 +76,8 @@ namespace MyPasswordManager
             if (FIG)
             {
                 passwordManagement.Properties.Settings.Default.userMasterPassword = passwordBox.Text;
+                passwordManagement.Properties.Settings.Default.databaseId = databaseId.Text;
+                passwordManagement.Properties.Settings.Default.databasePassword = databasePass.Text;
                 passwordManagement.Properties.Settings.Default.FIG = false;
                 passwordManagement.Properties.Settings.Default.Save();
                 initializeDataGrid();
@@ -288,6 +299,8 @@ namespace MyPasswordManager
         private void initializeDebug()
         {
             passwordManagement.Properties.Settings.Default.userMasterPassword = "";
+            passwordManagement.Properties.Settings.Default.databaseId = "";
+            passwordManagement.Properties.Settings.Default.databasePassword = "";
             passwordManagement.Properties.Settings.Default.FIG = true;
             passwordManagement.Properties.Settings.Default.Save();
         }
