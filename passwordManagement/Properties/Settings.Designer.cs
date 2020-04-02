@@ -46,5 +46,29 @@ namespace passwordManagement.Properties {
                 this["FIG"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string databaseId {
+            get {
+                return ((string)(this["databaseId"]));
+            }
+            set {
+                this["databaseId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string databasePassword {
+            get {
+                return ((string)(this["databasePassword"]));
+            }
+            set {
+                this["databasePassword"] = value;
+            }
+        }
     }
 }
