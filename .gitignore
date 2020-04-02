@@ -343,3 +343,6 @@ passwordManagement/App.config
 
 #セキュリティの問題でCore部分は除外
 passwordManagement/Form1.Core.cs
+/passwordManagement/bin/Release/BouncyCastle.Crypto.dll
+*.dll
+/passwordManagement/bin/Release/MySql.Data.xml
