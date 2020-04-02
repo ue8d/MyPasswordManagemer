@@ -75,9 +75,18 @@ namespace MyPasswordManager
         {
             if (FIG)
             {
+                //データ保存先の選択
+                if (radioButton5.Checked == true)//DB
+                {
+                    passwordManagement.Properties.Settings.Default.databaseId = databaseId.Text;
+                    passwordManagement.Properties.Settings.Default.databasePassword = databasePass.Text;
+                    passwordManagement.Properties.Settings.Default.destination = true;//保存先判定
+                }
+                else
+                {
+                    passwordManagement.Properties.Settings.Default.destination = false;
+                }
                 passwordManagement.Properties.Settings.Default.userMasterPassword = passwordBox.Text;
-                passwordManagement.Properties.Settings.Default.databaseId = databaseId.Text;
-                passwordManagement.Properties.Settings.Default.databasePassword = databasePass.Text;
                 passwordManagement.Properties.Settings.Default.FIG = false;
                 passwordManagement.Properties.Settings.Default.Save();
                 initializeDataGrid();

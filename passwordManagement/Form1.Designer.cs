@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.databasePass = new System.Windows.Forms.TextBox();
+            this.databaseId = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.passwordBox = new System.Windows.Forms.TextBox();
@@ -57,11 +62,9 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label6 = new System.Windows.Forms.Label();
-            this.databaseId = new System.Windows.Forms.TextBox();
-            this.databasePass = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -70,10 +73,12 @@
             this.tabControl1.SuspendLayout();
             this.トップページ.SuspendLayout();
             this.ログイン後.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label9);
@@ -89,6 +94,47 @@
             this.panel1.Size = new System.Drawing.Size(663, 304);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(37, 127);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 12);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "label11";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(37, 90);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 12);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "label10";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(37, 52);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 12);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "label9";
+            // 
+            // databasePass
+            // 
+            this.databasePass.Location = new System.Drawing.Point(39, 140);
+            this.databasePass.Name = "databasePass";
+            this.databasePass.Size = new System.Drawing.Size(242, 19);
+            this.databasePass.TabIndex = 5;
+            // 
+            // databaseId
+            // 
+            this.databaseId.Location = new System.Drawing.Point(39, 105);
+            this.databaseId.Name = "databaseId";
+            this.databaseId.Size = new System.Drawing.Size(242, 19);
+            this.databaseId.TabIndex = 4;
             // 
             // label8
             // 
@@ -353,46 +399,36 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "コピーしました";
             // 
-            // databaseId
+            // groupBox2
             // 
-            this.databaseId.Location = new System.Drawing.Point(39, 105);
-            this.databaseId.Name = "databaseId";
-            this.databaseId.Size = new System.Drawing.Size(242, 19);
-            this.databaseId.TabIndex = 4;
+            this.groupBox2.Controls.Add(this.radioButton5);
+            this.groupBox2.Controls.Add(this.radioButton4);
+            this.groupBox2.Location = new System.Drawing.Point(328, 94);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(103, 65);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "データ保存先";
             // 
-            // databasePass
+            // radioButton4
             // 
-            this.databasePass.Location = new System.Drawing.Point(39, 140);
-            this.databasePass.Name = "databasePass";
-            this.databasePass.Size = new System.Drawing.Size(242, 19);
-            this.databasePass.TabIndex = 5;
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(7, 17);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(61, 16);
+            this.radioButton4.TabIndex = 0;
+            this.radioButton4.Text = "ローカル";
+            this.radioButton4.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // radioButton5
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(37, 52);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 12);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "label9";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(37, 90);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 12);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "label10";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(37, 127);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(41, 12);
-            this.label11.TabIndex = 7;
-            this.label11.Text = "label11";
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(7, 40);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(80, 16);
+            this.radioButton5.TabIndex = 1;
+            this.radioButton5.Text = "データベース";
+            this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -417,6 +453,8 @@
             this.tabControl1.ResumeLayout(false);
             this.トップページ.ResumeLayout(false);
             this.ログイン後.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,5 +496,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton4;
     }
 }
