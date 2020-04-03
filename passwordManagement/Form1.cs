@@ -55,6 +55,11 @@ namespace MyPasswordManager
             {
                 firstLaunch();
             }
+
+            if (!passwordManagement.Properties.Settings.Default.destination)
+            {
+                this.dataGridView1.Visible = false;
+            }
         }
 
         private void firstLaunch()
@@ -90,7 +95,14 @@ namespace MyPasswordManager
                 passwordManagement.Properties.Settings.Default.userMasterPassword = passwordBox.Text;
                 passwordManagement.Properties.Settings.Default.FIG = false;
                 passwordManagement.Properties.Settings.Default.Save();
-                initializeDataGrid();
+                if (passwordManagement.Properties.Settings.Default.destination)
+                {
+                    initializeDataGrid();
+                }
+                else
+                {
+                    initializeListView();
+                }
                 this.panel1.Visible = false;
                 this.panel2.Visible = true;
             }
@@ -98,8 +110,14 @@ namespace MyPasswordManager
             {
                 if (passwordBox.Text == passwordManagement.Properties.Settings.Default.userMasterPassword)
                 {
-                    initializeDataGrid();
-                    //initializeListView();
+                    if (passwordManagement.Properties.Settings.Default.destination)
+                    {
+                        initializeDataGrid();
+                    }
+                    else
+                    {
+                        initializeListView();
+                    }
                     this.panel1.Visible = false;
                     this.panel2.Visible = true;
                 }
@@ -181,13 +199,22 @@ namespace MyPasswordManager
         private void button3_Click(object sender, EventArgs e)
         {
             //addListView(); //リストビューに追加
-            //addFile(); //File書き込み
-            addSQL();
+
+            if (passwordManagement.Properties.Settings.Default.destination)
+            {
+                addSQL();//DB
+            }
+            else
+            {
+                addFile(); //ローカルFile書き込み
+            }
+
+
         }
 
         private void addSQL()
         {
-            String sql = "insert into passwordmanager (site,siteId,password) values('" + textBox3.Text + "','siteid','" + EncryptString(textBox1.Text, masterPassword) + "')";
+            String sql = "insert into passwordmanager (site,siteId,password) values('" + textBox3.Text + "','siteid','" + textBox1.Text + "')";
             // MySQLへの接続
             try
             {
@@ -216,6 +243,8 @@ namespace MyPasswordManager
             if (File.Exists(filePath))
             {
                 File.AppendAllText(filePath, EncryptString(textBox3.Text, masterPassword) + "," + EncryptString(textBox1.Text, masterPassword) + ",");
+                addListView();
+                initializeListView();
             }
             else
             {
