@@ -105,15 +105,6 @@ namespace MyPasswordManager
                 passwordManagement.Properties.Settings.Default.FIG = false;
                 passwordManagement.Properties.Settings.Default.Save();
 
-                if (passwordManagement.Properties.Settings.Default.destination)
-                {
-                    initializeDataGrid();
-                }
-                else
-                {
-                    initializeListView();
-                }
-
                 this.panel1.Visible = false;
                 this.panel2.Visible = true;
             }
@@ -121,14 +112,6 @@ namespace MyPasswordManager
             {
                 if (passwordBox.Text == passwordManagement.Properties.Settings.Default.userMasterPassword)
                 {
-                    if (passwordManagement.Properties.Settings.Default.destination)
-                    {
-                        initializeDataGrid();
-                    }
-                    else
-                    {
-                        initializeListView();
-                    }
                     this.panel1.Visible = false;
                     this.panel2.Visible = true;
                 }
@@ -140,8 +123,18 @@ namespace MyPasswordManager
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
                     passwordBox.Text = "";
+                    return;
                 }
 
+            }
+
+            if (passwordManagement.Properties.Settings.Default.destination)
+            {
+                initializeDataGrid();
+            }
+            else
+            {
+                initializeListView();
             }
         }
 
