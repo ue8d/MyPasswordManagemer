@@ -255,7 +255,6 @@ namespace MyPasswordManager
             {
                 File.AppendAllText(filePath, EncryptString(textBox3.Text, masterPassword) + "," + EncryptString(textBox1.Text, masterPassword) + ",");
                 addListView();
-                initializeListView();
             }
             else
             {
