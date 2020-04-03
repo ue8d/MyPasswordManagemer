@@ -81,6 +81,14 @@ namespace MyPasswordManager
         {
             if (FIG)
             {
+                if((radioButton4.Checked == false) && (radioButton5.Checked == false)){
+                    DialogResult result = MessageBox.Show(
+                        "保存先を選択してください。",
+                        "エラー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
                 //データ保存先の選択
                 if (radioButton5.Checked == true)//DB
                 {
@@ -92,9 +100,11 @@ namespace MyPasswordManager
                 {
                     passwordManagement.Properties.Settings.Default.destination = false;
                 }
+
                 passwordManagement.Properties.Settings.Default.userMasterPassword = passwordBox.Text;
                 passwordManagement.Properties.Settings.Default.FIG = false;
                 passwordManagement.Properties.Settings.Default.Save();
+
                 if (passwordManagement.Properties.Settings.Default.destination)
                 {
                     initializeDataGrid();
@@ -103,6 +113,7 @@ namespace MyPasswordManager
                 {
                     initializeListView();
                 }
+
                 this.panel1.Visible = false;
                 this.panel2.Visible = true;
             }
