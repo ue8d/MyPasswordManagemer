@@ -30,7 +30,7 @@ namespace MyPasswordManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //initializeDebug();//デバック用保存変数初期化
+            initializeDebug();//デバック用保存変数初期化
             initialize();
         }
 
@@ -69,6 +69,7 @@ namespace MyPasswordManager
             label9.Text = "マスターパスワード";
             label10.Text = "DBログインID";
             label11.Text = "DBパスワード";
+            this.databasePass.PasswordChar = '*';
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
