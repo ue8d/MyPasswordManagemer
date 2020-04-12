@@ -335,7 +335,8 @@ namespace MyPasswordManager
             }
             catch (MySqlException me)
             {
-                MessageBox.Show("ERROR: " + me.Message);
+                //MessageBox.Show("ERROR: " + me.Message);
+                MessageBox.Show("再起動をしてください。");
             }
         }
 
@@ -348,4 +349,5 @@ namespace MyPasswordManager
             passwordManagement.Properties.Settings.Default.Save();
         }
     }
+ 
 }
