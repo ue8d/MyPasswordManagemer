@@ -30,13 +30,13 @@ namespace MyPasswordManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //initializeDebug();//デバック用保存変数初期化
+            initializeDebug();//デバック用保存変数初期化
             initialize();
         }
 
         private void initialize()
         {
-            this.label1.Text = "MyPasswordManager - v0.04";
+            this.label1.Text = "MyPasswordManager - v0.05";
             this.label6.Text = "";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
