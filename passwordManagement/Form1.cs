@@ -30,7 +30,7 @@ namespace MyPasswordManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            initializeDebug();//デバック用保存変数初期化
+            //initializeDebug();//デバック用保存変数初期化
             initialize();
         }
 
