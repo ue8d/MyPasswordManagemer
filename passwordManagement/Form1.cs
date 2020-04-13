@@ -326,7 +326,7 @@ namespace MyPasswordManager
 
                 DataTable dt = new DataTable();
 
-                MySqlDataAdapter da = new MySqlDataAdapter("select site,password from passwordManager", connection);
+                MySqlDataAdapter da = new MySqlDataAdapter("select site as 'サイト名',password as 'パスワード' from passwordManager", connection);
 
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
