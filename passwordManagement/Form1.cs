@@ -349,7 +349,7 @@ namespace MyPasswordManager
                 }
                 else
                 {
-                    MessageBox.Show("ERROR: " + me.Message);
+                    MessageBox.Show("ERROR: " + "IDまたはパスワードが違います。");
                 }
             }
         }
