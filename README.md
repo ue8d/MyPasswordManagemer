@@ -2,8 +2,8 @@
 
 パスワードの作成、管理目的に作成しているソフトです。
 
-## ダウンロード - v0.04
-https://ue8d.com/Release/passwordManagement_v0.04.exe
+## ダウンロード - v0.1
+https://ue8d.com/Release/passwordManagement_v0.1.exe
 
 ## 使い方
 1. 起動後に画面の指示に従いパスワードの保存先を選んで、必要項目を入力して登録をクリック
