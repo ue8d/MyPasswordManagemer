@@ -335,8 +335,22 @@ namespace MyPasswordManager
             }
             catch (MySqlException me)
             {
-                //MessageBox.Show("ERROR: " + me.Message);
-                MessageBox.Show("再起動をしてください。");
+                if (FIG)
+                {
+                    DialogResult dr = MessageBox.Show("再起動します。","初回起動", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    switch(dr)
+                    {
+                        case DialogResult.OK:
+                            Application.Restart();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ERROR: " + me.Message);
+                }
             }
         }
 
