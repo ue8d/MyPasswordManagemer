@@ -36,7 +36,7 @@ namespace MyPasswordManager
 
         private void initialize()
         {
-            this.label1.Text = "MyPasswordManager - v0.05";
+            this.label1.Text = "MyPasswordManager - v0.1";
             this.label6.Text = "";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
